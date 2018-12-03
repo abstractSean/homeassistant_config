@@ -1,0 +1,30 @@
+- id: '1543731799988'
+  alias: Oilers Goal
+  trigger:
+  - entity_id: light.alexa_virtual
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - data:
+      entity_id: input_boolean.goaling
+    service: homeassistant.turn_on
+  - data:
+      entity_id: script.goal_start
+    service: script.turn_on
+- id: '1543734397975'
+  alias: Turn off goal
+  trigger:
+  - entity_id: input_boolean.goaling
+    for: 00:00:30
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - data:
+      entity_id: script.goal_stop
+    service: script.turn_on
+  - data:
+      entity_id: input_boolean.goaling
+    service: homeassistant.turn_off

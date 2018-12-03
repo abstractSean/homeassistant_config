@@ -1,0 +1,13 @@
+'1543692491327':
+  alias: Hello world
+  sequence:
+  - data:
+      name: alexa
+    service: python_script.hello_world
+start_hockey:
+  alias: Start hockey
+  sequence:
+  - alias: ''
+    data:
+      message: ''
+    service: notify.start_hockey

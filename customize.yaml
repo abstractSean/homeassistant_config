@@ -1,0 +1,5 @@
+###LIGHTS
+  light.alexa_virtual:
+    icon: mdi:power
+    friendly_name: "Alexa dummy light"
+    emulated_hue_hidden: false
