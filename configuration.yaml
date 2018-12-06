@@ -14,7 +14,7 @@ homeassistant:
   customize: !include customize.yaml
 
 # Show links to resources in log and frontend
-introduction:
+# introduction:
 
 # Enables the frontend
 frontend:
@@ -69,6 +69,7 @@ group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
 
+# My Additions
 zone:
   name: Home
   latitude: 47.099454
@@ -81,19 +82,63 @@ ios:
 light:
   - platform: template
     lights:
-      alexa_virtual:
-        friendly_name: "Alexa dummy light"
+      goal_light:
+        friendly_name: "Goal light"
+
+        turn_on:
+        - data:
+            entity_id: input_boolean.goaling
+          service: input_boolean.turn_on
+        - data:
+            entity_id: script.goal_start
+          service: script.turn_on
+
+        turn_off:
+        - data:
+            entity_id: script.goal_stop
+          service: script.turn_on
+        - data:
+            entity_id: input_boolean.goaling
+          service: input_boolean.turn_off
+
+        set_level:
+
+  - platform: template
+    lights:
+      test_light:
+        friendly_name: "Test light"
         turn_on:
 
         turn_off:
 
         set_level:
 
+  - platform: template
+    lights:
+      watch_hockey:
+        friendly_name: "Watch hockey"
+        turn_on:
+          data:
+            message: ''
+          service: notify.start_hockey
+        turn_off:
+          data:
+            message: ''
+          service: notify.stop_hockey
+        set_level:
+          data:
+            message: ''
+          service: notify.start_hockey
+
 notify:
   - platform: rest
     resource: http://192.168.1.148:5000/hockey/
     method: GET
     name: start_hockey
+  - platform: rest
+    resource: http://192.168.1.148:5000/stop_hockey/
+    method: GET
+    name: stop_hockey
 
 
 emulated_hue:
@@ -107,15 +152,14 @@ emulated_hue:
     - script
     - light
   entities:
-    script.start_hockey:
-      name: "Start hockey"
+    light.watch_hockey:
       hidden: false
     light.computer:
       hidden: false
     light.tv:
       hidden: false
-    light.alexa_virtual:
-      hidden: true
+    light.goal_light:
+      hidden: false
 
 
 python_script:
@@ -123,3 +167,31 @@ python_script:
 logger:
   default: info
 
+input_boolean:
+  goaling:
+    name: Goaling
+    initial: off
+
+input_number:
+  goalfeed:
+    name: Goalfeed delay
+    initial: 30
+    min: 0
+    max: 180
+    step: 1
+  brightness_saved:
+    name: brightness saved
+    initial: 255
+    min: 0
+    max: 255
+    step: 1
+  color_temp_saved:
+    name: color temp saved
+    initial: 400
+    min: 1
+    max: 500
+    step: 1
+
+goalfeed:
+  username: !secret goalfeed_username
+  password: !secret goalfeed_password
