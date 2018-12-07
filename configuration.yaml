@@ -171,6 +171,9 @@ input_boolean:
   goaling:
     name: Goaling
     initial: off
+  light_saved:
+    name: Light on/off saved
+    initial: off
 
 input_number:
   goalfeed:
@@ -180,13 +183,13 @@ input_number:
     max: 180
     step: 1
   brightness_saved:
-    name: brightness saved
+    name: Brightness saved
     initial: 255
     min: 0
     max: 255
     step: 1
   color_temp_saved:
-    name: color temp saved
+    name: Color temp saved
     initial: 400
     min: 1
     max: 500
