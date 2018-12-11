@@ -84,37 +84,16 @@ light:
     lights:
       goal_light:
         friendly_name: "Goal light"
-
         turn_on:
-        - data:
-            entity_id: input_boolean.goaling
-          service: input_boolean.turn_on
-        - data:
-            entity_id: script.goal_start
-          service: script.turn_on
-
         turn_off:
-        - data:
-            entity_id: script.goal_stop
-          service: script.turn_on
-        - data:
-            entity_id: input_boolean.goaling
-          service: input_boolean.turn_off
-
         set_level:
 
-  - platform: template
-    lights:
       test_light:
         friendly_name: "Test light"
         turn_on:
-
         turn_off:
-
         set_level:
 
-  - platform: template
-    lights:
       watch_hockey:
         friendly_name: "Watch hockey"
         turn_on:
@@ -161,38 +140,21 @@ emulated_hue:
     light.goal_light:
       hidden: false
 
-
 python_script:
 
 logger:
   default: info
 
 input_boolean:
-  goaling:
-    name: Goaling
-    initial: off
-  light_saved:
-    name: Light on/off saved
+  test_goal_light:
     initial: off
 
 input_number:
   goalfeed:
     name: Goalfeed delay
-    initial: 30
+    initial: 20
     min: 0
-    max: 180
-    step: 1
-  brightness_saved:
-    name: Brightness saved
-    initial: 255
-    min: 0
-    max: 255
-    step: 1
-  color_temp_saved:
-    name: Color temp saved
-    initial: 400
-    min: 1
-    max: 500
+    max: 60
     step: 1
 
 goalfeed:

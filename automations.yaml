@@ -9,27 +9,5 @@
   action:
   - delay: "00:00:{{ states.input_number.goalfeed.state | int }}"
   - data:
-      entity_id: input_boolean.goaling
-    service: input_boolean.turn_on
-  - data:
-      entity_id: script.goal_start
-    service: script.turn_on
-- id: turn_off_goal
-  alias: Turn off goal
-  trigger:
-  - entity_id: input_boolean.goaling
-    for: 
-      seconds: 30
-    platform: state
-    to: 'on'
-  condition: []
-  action:
-  - data:
-      entity_id: script.goal_stop
-    service: script.turn_on
-  - data:
-      entity_id: input_boolean.goaling
-    service: input_boolean.turn_off
-  - data:
-          entity_id: light.goal_light
-    service: homeassistant.turn_off
+      entity_id: light.goal_light
+    service: light.turn_on
