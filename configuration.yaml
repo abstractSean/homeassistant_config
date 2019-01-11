@@ -88,8 +88,20 @@ light:
         turn_off:
         set_level:
 
+      christmas:
+        friendly_name: "Christmas lights"
+        turn_on:
+        turn_off:
+        set_level:
+
       test_light:
         friendly_name: "Test light"
+        turn_on:
+        turn_off:
+        set_level:
+
+      test_light2:
+        friendly_name: "Test light 2"
         turn_on:
         turn_off:
         set_level:
@@ -108,6 +120,7 @@ light:
           data:
             message: ''
           service: notify.start_hockey
+
 
 notify:
   - platform: rest
@@ -139,6 +152,8 @@ emulated_hue:
       hidden: false
     light.goal_light:
       hidden: false
+    light.christmas:
+      hidden: false 
 
 python_script:
 
@@ -146,7 +161,11 @@ logger:
   default: info
 
 input_boolean:
+  test_bool:
+    initial: off
   test_goal_light:
+    initial: off
+  christmas_test:
     initial: off
 
 input_number:
