@@ -94,6 +94,12 @@ light:
         turn_off:
         set_level:
 
+      rainbow:
+        friendly_name: "Rainbow lights"
+        turn_on:
+        turn_off:
+        set_level:
+
       test_light:
         friendly_name: "Test light"
         turn_on:
@@ -153,6 +159,8 @@ emulated_hue:
     light.goal_light:
       hidden: false
     light.christmas:
+      hidden: false 
+    light.rainbow:
       hidden: false 
 
 python_script:
