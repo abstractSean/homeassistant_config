@@ -100,6 +100,12 @@ light:
         turn_off:
         set_level:
 
+      crazy:
+        friendly_name: "Crazy lights"
+        turn_on:
+        turn_off:
+        set_level:
+
       test_light:
         friendly_name: "Test light"
         turn_on:
@@ -127,6 +133,16 @@ light:
             message: ''
           service: notify.start_hockey
 
+      watch_kodi:
+        friendly_name: "Watch Kodi"
+        turn_on:
+          data:
+            message: ''
+          service: notify.watch_kodi
+        turn_off:
+          data:
+            message: ''
+          service: notify.stop_kodi
 
 notify:
   - platform: rest
@@ -137,6 +153,14 @@ notify:
     resource: http://192.168.1.148:5000/stop_hockey/
     method: GET
     name: stop_hockey
+  - platform: rest
+    resource: http://192.168.1.148:5000/kodi/
+    method: GET
+    name: watch_kodi
+  - platform: rest
+    resource: http://192.168.1.148:5000/stop_kodi/
+    method: GET
+    name: stop_kodi
 
 
 emulated_hue:
@@ -162,6 +186,10 @@ emulated_hue:
       hidden: false 
     light.rainbow:
       hidden: false 
+    light.crazy:
+      hidden: false 
+    light.watch_kodi:
+      hidden: false
 
 python_script:
 
