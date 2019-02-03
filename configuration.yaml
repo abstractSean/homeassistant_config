@@ -144,6 +144,13 @@ light:
             message: ''
           service: notify.stop_kodi
 
+      go_oilers:
+        friendly_name: "Go Oilers"
+        turn_on:
+        turn_off:
+        set_level:
+
+
 notify:
   - platform: rest
     resource: http://192.168.1.148:5000/hockey/
@@ -189,6 +196,8 @@ emulated_hue:
     light.crazy:
       hidden: false 
     light.watch_kodi:
+      hidden: false
+    light.go_oilers:
       hidden: false
 
 python_script:
